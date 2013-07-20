@@ -1,3 +1,11 @@
+It's simplest possible application which uses spring-data with spring and runs on google app engine.
+Apache Maven is used as build manager.
+
+Used components:
+	spring - 3.2.x
+	spring-data - 1.3.x
+
+
 App Engine Java Application
 Copyright (C) 2010-2012 Google Inc.
 
