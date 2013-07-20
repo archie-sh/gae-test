@@ -7,6 +7,8 @@
 	<persistence-unit name="transactions-optional">
 		<provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider>
 
+		<class>com.github.pchudzik.gae.test.domain.Student</class>
+
 		<properties>
 			<property name="datanucleus.NontransactionalRead" value="true"/>
 			<property name="datanucleus.NontransactionalWrite" value="true"/>

@@ -29,7 +29,8 @@
 		<form:password path="password" />
 	</div>
 	<div>
-		<input type="submit" value="save student" />
+		<input type="submit" value="Save raw" name="saveMethod"/>
+		<input type="submit" value="Save repo" name="saveMethod"/>
 	</div>
 </form:form>
 </body>
