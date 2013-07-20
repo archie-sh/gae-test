@@ -15,16 +15,15 @@
 	<title></title>
 </head>
 <body>
-<%@ include file="../links.jsp" %>
 <table border="1">
-	<th>
-		<td>ID</td>
-		<td>First Name</td>
-		<td>Last Name</td>
-		<td>Password</td>
-		<td>Edit</td>
-		<td>Delete</td>
-	</th>
+	<tr>
+		<th>ID</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Password</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
 	<c:forEach var="student" items="${students}">
 		<tr>
 			<td>${student.id}</td>
@@ -33,10 +32,11 @@
 			<td>${student.password}</td>
 			<td>
 				<a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=raw">Edit raw</a><br/>
-				<a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=repo">Edit repo</a></td>
+				<a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=repo">Edit repo</a>
+			</td>
 			<td>
 				<a href="${pageContext.request.contextPath}/student/delete/${student.id}?type=raw">Delete raw</a><br/>
-				<a href="${pageContext.request.contextPath}/student/delete/${student.id}?type=repo">Delete repo</a><br/>
+				<a href="${pageContext.request.contextPath}/student/delete/${student.id}?type=repo">Delete repo</a>
 			</td>
 		</tr>
 	</c:forEach>
