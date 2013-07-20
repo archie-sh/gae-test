@@ -14,5 +14,14 @@
 		<servlet-name>rawServlet</servlet-name>
 		<url-pattern>/raw</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>rawJspServlet</servlet-name>
+		<jsp-file>/jsp/rawFile.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>rawJspServlet</servlet-name>
+		<url-pattern>/rawJsp</url-pattern>
+	</servlet-mapping>
 </web-app>
