@@ -46,6 +46,15 @@ public class StudentDao {
 	}
 
 	public Student findOne(Long id) {
-		return (Student) entityManager.createQuery("select s from Student s where id = " + id).getSingleResult();
+		return (Student) entityManager.createQuery("select s from Student s where s.id = " + id).getSingleResult();
+	}
+
+	public void delete(final Long id) {
+		transactionTemplate.execute(new TransactionCallback<Object>() {
+			@Override
+			public Object doInTransaction(TransactionStatus status) {
+				return entityManager.createQuery("delete from Student s where s.id = " + id).executeUpdate();
+			};
+		});
 	}
 }

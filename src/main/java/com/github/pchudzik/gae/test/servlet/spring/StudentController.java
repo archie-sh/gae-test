@@ -76,6 +76,20 @@ public class StudentController {
 		return saveStudent(student, modelMap, saveMethod);
 	}
 
+	@RequestMapping(value = "/delete/{id}")
+	public String delete(@PathVariable Long id, @RequestParam String type, ModelMap modelMap) {
+		String msg = "Student with id " + id + " deleted using ";
+		if("raw".equals(type)) {
+			studentDao.delete(id);
+			msg += "raw entity manager";
+		} else if("repo".equals(type)){
+			studentRepository.delete(id);
+			msg += "spring data repository";
+		}
+		modelMap.put("msg", msg);
+		return "/success";
+	}
+
 	@RequestMapping(value = "/list")
 	public String listStudents(@RequestParam String type, ModelMap modelMap) {
 		List<Student> studens = null;

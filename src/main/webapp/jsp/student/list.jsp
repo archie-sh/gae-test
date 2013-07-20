@@ -23,6 +23,7 @@
 		<td>Last Name</td>
 		<td>Password</td>
 		<td>Edit</td>
+		<td>Delete</td>
 	</th>
 	<c:forEach var="student" items="${students}">
 		<tr>
@@ -30,8 +31,13 @@
 			<td>${student.firstName}</td>
 			<td>${student.lastName}</td>
 			<td>${student.password}</td>
-			<td><a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=raw">Edit raw</a></td>
-			<td><a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=repo">Edit repo</a></td>
+			<td>
+				<a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=raw">Edit raw</a><br/>
+				<a href="${pageContext.request.contextPath}/student/edit/${student.id}?type=repo">Edit repo</a></td>
+			<td>
+				<a href="${pageContext.request.contextPath}/student/delete/${student.id}?type=raw">Delete raw</a><br/>
+				<a href="${pageContext.request.contextPath}/student/delete/${student.id}?type=repo">Delete repo</a><br/>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
