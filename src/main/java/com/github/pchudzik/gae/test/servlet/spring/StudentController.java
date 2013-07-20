@@ -19,8 +19,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Time: 11:27
  */
 @Controller
-@RequestMapping("/raw/student")
-public class SaveStudentController {
+@RequestMapping("/student")
+public class StudentController {
 	@Autowired private StudentDao studentDao;
 	@Autowired private StudentRepository studentRepository;
 
@@ -45,7 +45,7 @@ public class SaveStudentController {
 
 		modelMap.put("msg", msg);
 		modelMap.put("object", student);
-		
+
 		return "/success";
 	}
 
