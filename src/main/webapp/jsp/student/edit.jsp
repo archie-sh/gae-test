@@ -16,6 +16,7 @@
 </head>
 <body>
 <form:form commandName="student">
+	<form:hidden path="id" />
 	<div>
 		<span>First name:</span>
 		<form:input path="firstName"/>
@@ -33,5 +34,6 @@
 		<input type="submit" value="Save repo" name="saveMethod"/>
 	</div>
 </form:form>
+<%@ include file="../links.jsp" %>
 </body>
 </html>

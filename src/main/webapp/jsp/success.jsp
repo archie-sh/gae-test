@@ -13,5 +13,7 @@
 <body>
 	<h3>${msg}</h3>
 	<p>object: <code>${object}</code></p>
+
+	<%@ include file="links.jsp" %>
 </body>
 </html>
