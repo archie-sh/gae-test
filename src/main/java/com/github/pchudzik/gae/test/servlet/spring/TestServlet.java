@@ -15,11 +15,11 @@ import static com.google.appengine.repackaged.com.google.common.base.Strings.nul
  */
 @Controller
 @RequestMapping("/spring")
-public class TestSpringServlet {
+public class TestServlet {
 
 	@RequestMapping(value = "/{hello}", method = RequestMethod.GET)
 	public String hello(@PathVariable String hello, ModelMap modelMap) {
 		modelMap.put("hello", nullToEmpty(hello));
-		return "helloSpring";
+		return "/helloSpring";
 	}
 }
