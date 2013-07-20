@@ -2,12 +2,15 @@ package com.github.pchudzik.gae.test.domain;
 
 import com.google.appengine.repackaged.com.google.common.base.Objects;
 
+import javax.persistence.Entity;
+
 /**
  * User: pawel
  * Date: 20.07.13
  * Time: 10:38
  */
-public class Student {
+@Entity
+public class Student extends BaseEntity {
 	private String firstName;
 	private String lastName;
 	private String password;
