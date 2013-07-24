@@ -1,6 +1,7 @@
 package com.github.pchudzik.gae.test.dao;
 
 import com.github.pchudzik.gae.test.domain.Student;
+import com.google.appengine.api.datastore.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -45,15 +46,19 @@ public class StudentDao {
 		return (List<Student>)entityManager.createQuery("select s from Student s").getResultList();
 	}
 
-	public Student findOne(Long id) {
-		return (Student) entityManager.createQuery("select s from Student s where s.id = " + id).getSingleResult();
+	public Student findOne(Key id) {
+		return (Student) entityManager.createQuery("select s from Student s where s.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 
-	public void delete(final Long id) {
+	public void delete(final Key id) {
 		transactionTemplate.execute(new TransactionCallback<Object>() {
 			@Override
 			public Object doInTransaction(TransactionStatus status) {
-				return entityManager.createQuery("delete from Student s where s.id = " + id).executeUpdate();
+				return entityManager.createQuery("delete from Student s where s.id = :id")
+						.setParameter("id", id)
+						.executeUpdate();
 			};
 		});
 	}

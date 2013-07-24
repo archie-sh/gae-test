@@ -29,6 +29,23 @@
 		<span>Password:</span>
 		<form:password path="password" />
 	</div>
+	<form:hidden path="address.id" />
+	<div>
+		<span>Country</span>
+		<form:input path="address.country" />
+	</div>
+	<div>
+		<span>City</span>
+		<form:input path="address.city" />
+	</div>
+	<div>
+		<span>Street</span>
+		<form:input path="address.street" />
+	</div>
+	<div>
+		<span>Building Number</span>
+		<form:input path="address.buildingNumber" />
+	</div>
 	<div>
 		<input type="submit" value="Save raw" name="saveMethod"/>
 		<input type="submit" value="Save repo" name="saveMethod"/>

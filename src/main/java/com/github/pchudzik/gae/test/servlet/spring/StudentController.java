@@ -1,17 +1,16 @@
 package com.github.pchudzik.gae.test.servlet.spring;
 
+import com.github.pchudzik.gae.test.config.GoogleAppEngineKeyPropertyEditor;
 import com.github.pchudzik.gae.test.dao.StudentDao;
 import com.github.pchudzik.gae.test.domain.Student;
 import com.github.pchudzik.gae.test.repository.StudentRepository;
-import com.google.appengine.repackaged.com.google.common.collect.Lists;
+import com.google.appengine.api.datastore.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = GET)
-	public String getEditPage(@PathVariable Long id, @RequestParam String type, ModelMap modelMap) {
+	public String getEditPage(@PathVariable Key id, @RequestParam String type, ModelMap modelMap) {
 		Student student = null;
 		if("raw".equals(type)) {
 			student = studentDao.findOne(id);
@@ -77,7 +76,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable Long id, @RequestParam String type, ModelMap modelMap) {
+	public String delete(@PathVariable Key id, @RequestParam String type, ModelMap modelMap) {
 		String msg = "Student with id " + id + " deleted using ";
 		if("raw".equals(type)) {
 			studentDao.delete(id);
@@ -102,6 +101,12 @@ public class StudentController {
 		}
 		modelMap.put("students", studens);
 		return "/student/list";
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		dataBinder.registerCustomEditor(Key.class, new GoogleAppEngineKeyPropertyEditor());
+
 	}
 
 	@ModelAttribute("student")
