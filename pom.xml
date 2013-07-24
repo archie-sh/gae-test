@@ -54,6 +54,12 @@
 		</dependency>
 		<!-- /spring -->
 
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>14.0.1</version>
+		</dependency>
+
 		<!-- jpa -->
 		<dependency>
 			<groupId>org.datanucleus</groupId>

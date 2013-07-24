@@ -1,6 +1,7 @@
 package com.github.pchudzik.gae.test.domain;
 
-import com.google.appengine.repackaged.com.google.common.base.Objects;
+
+import com.google.common.base.Objects;
 
 import javax.persistence.Entity;
 
