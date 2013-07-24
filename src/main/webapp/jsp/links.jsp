@@ -12,4 +12,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <a href="${pageContext.request.contextPath}/student/edit">Create</a><br/>
 <a href="${pageContext.request.contextPath}/student/list?type=raw">List using raw entity manager</a><br/>
-<a href="${pageContext.request.contextPath}/student/list?type=repo">List using spring data</a><br/>
+<a href="${pageContext.request.contextPath}/student/list?type=repo">List using spring data</a><br/><br/>
+
+<a href="/_ah/admin">app engine admin</a>
