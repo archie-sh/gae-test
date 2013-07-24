@@ -1,5 +1,7 @@
 package com.github.pchudzik.gae.test.domain;
 
+import com.google.appengine.api.datastore.Key;
+
 import javax.persistence.*;
 
 /**
@@ -11,13 +13,13 @@ import javax.persistence.*;
 @MappedSuperclass
 public class BaseEntity {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Key id;
 
-	public Long getId() {
+	public Key getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Key id) {
 		this.id = id;
 	}
 }

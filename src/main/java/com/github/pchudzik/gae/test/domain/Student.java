@@ -3,7 +3,9 @@ package com.github.pchudzik.gae.test.domain;
 
 import com.google.common.base.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * User: pawel
@@ -15,6 +17,9 @@ public class Student extends BaseEntity {
 	private String firstName;
 	private String lastName;
 	private String password;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address = new Address();
 
 	public String getFirstName() {
 		return firstName;
@@ -40,12 +45,21 @@ public class Student extends BaseEntity {
 		this.password = password;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return Objects.toStringHelper(this)
 				.add("firstName", firstName)
 				.add("lastName", lastName)
 				.add("password", password)
+				.add("address", address)
 				.toString();
 	}
 }
