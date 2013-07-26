@@ -2,10 +2,10 @@ package com.github.pchudzik.gae.test.domain;
 
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * User: pawel
@@ -20,6 +20,9 @@ public class Student extends BaseEntity {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address = new Address();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "student")
+	private List<Grade> grades = Lists.newArrayList();
 
 	public String getFirstName() {
 		return firstName;
@@ -51,6 +54,14 @@ public class Student extends BaseEntity {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Grade> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(List<Grade> grades) {
+		this.grades = grades;
 	}
 
 	@Override

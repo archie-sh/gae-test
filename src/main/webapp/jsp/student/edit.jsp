@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="gae" uri="/WEB-INF/googleKey.tld"%>
 
 <%--
   Created by IntelliJ IDEA.
@@ -13,6 +14,7 @@
 <html>
 <head>
 	<title></title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 </head>
 <body>
 <form:form commandName="student">
@@ -45,6 +47,78 @@
 	<div>
 		<span>Building Number</span>
 		<form:input path="address.buildingNumber" />
+	</div>
+	<script>
+		var indexManager = (function() {
+			var currentIdx = 0;
+			return {
+				setCurrentIndex: function(idx) {
+					currentIdx = idx;
+				},
+				getNextIndex: function() {
+					return currentIdx++;
+				}
+			}
+		})();
+
+		function addGrade(grade) {
+			var idx = indexManager.getNextIndex();
+
+			function getInputName(name) {
+				return 'grades[' + idx + '].' + name;
+			};
+			function getId() {
+				return 'grade' + idx;
+			};
+			function getValue(name) {
+				return grade ? grade[name] : '';
+			};
+
+			var trContent = '<tr id="' + getId() + '">' +
+					'<td>' +
+					'	<input id="' + getId()+"_remove" + '" type="hidden" name="' + getInputName('removed') +'" value="false"/>' +
+					'	<input type="hidden" name="' + getInputName('id') + '" value="' + getValue('id') + '"/>' +
+					'	<input name="' + getInputName('courseName') + '" value="' + getValue('courseName') + '"/>' +
+					'</td>' +
+					'<td>' +
+					'	<input name="' + getInputName('grade') + '" value="' + getValue('grade') + '"/>' +
+					'</td>' +
+					'<td>' +
+					'	<a href="#" onclick="deleteGrade(\'' + getId() + '\')">' +
+					'		Delete' +
+					'	</a>' +
+					'</td> ' +
+					'</tr>';
+			$('#gradeContainer tbody').append(trContent);
+		}
+
+		function deleteGrade(gradeContainer) {
+			$('#' + gradeContainer).hide();
+			$('#' + gradeContainer + "_remove").val("true");
+		}
+	</script>
+	<div>
+		<table id="gradeContainer">
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>Grade</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="grade" items="${student.grades}">
+					<script>
+						addGrade({
+							"id":"<gae:key key="${grade.id}"/>",
+							"courseName":"${grade.courseName}",
+							"grade":${grade.grade}
+						});
+					</script>
+				</c:forEach>
+			</tbody>
+		</table>
+		<a href="#" onclick="addGrade(null)">Add</a>
 	</div>
 	<div>
 		<input type="submit" value="Save raw" name="saveMethod"/>
