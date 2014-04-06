@@ -41,6 +41,7 @@ public class SpringBeans {
 
 		}};
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 		entityManagerFactoryBean.setPersistenceProviderClass(PersistenceProviderImpl.class);
 		entityManagerFactoryBean.setPackagesToScan("com.github.pchudzik.gae.test.domain");
 		entityManagerFactoryBean.setLoadTimeWeaver(loadTimeWeaver());
